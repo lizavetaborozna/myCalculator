@@ -1,0 +1,46 @@
+<div class="panel panel-primary" xmlns="http://www.w3.org/1999/html">
+  <div class="panel-heading">
+    <h4 class="col-3">Таблица результатов</h4>
+    <form [formGroup]="formForPay" >
+      <div class="card-body row">
+        <div class="col-sm-2">
+          <mat-checkbox class="example-margin" formControlName="jobCheck" [(ngModel)]="jobCheck" (click)="jobFilter()">
+            Наличие работы
+          </mat-checkbox>
+        </div>
+        <div class="col-sm-7">
+          <mat-radio-group formControlName="taxCheck" [(ngModel)]="taxCheck">
+            <label>Сумма налога</label>
+            <mat-radio-button ngDefaultControl [value]="1">0-300</mat-radio-button>
+            <mat-radio-button ngDefaultControl [value]="2">300-500</mat-radio-button>
+            <mat-radio-button ngDefaultControl [value]="3">500-1000</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </form>
+      <button class="my" mat-raised-button (click)="filter($event)">Применить</button>
+      <button class="my" mat-raised-button (click)="showList();formForPay.reset()">Сбросить фильтр</button>
+  </div>
+  <div class="panel-body">
+    <div class="result-table">
+      <div class="row result-table__titles">
+        <div class="result-table__title">Сумма подоходного <br> налога</div>
+        <div class="result-table__title">Период<br>(месяцы)</div>
+        <div class="result-table__title">Выручка</div>
+        <div class="result-table__title">Внереализационные <br> доходы</div>
+        <div class="result-table__title">Наличие работы</div>
+        <div class="result-table__title">Предпринимательская <br> деятельность</div>
+      </div>
+      <div>
+        <div *ngFor="let result of results" class="row result-table__cells">
+          <div class="result-table__cell">{{result.result}}</div>
+          <div class="result-table__cell">{{result.periodStr1  }}</div>
+          <div class="result-table__cell">{{result.amountFromSaleStr2  }}</div>
+          <div class="result-table__cell">{{result.amountNoOperInStr3  }}</div>
+          <div class="result-table__cell">{{result.placeToWorkStr4 ? 'Да' : 'Нет' }}</div>
+          <div class="result-table__cell">{{result.amountEntreprenActivitiesStr13  }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

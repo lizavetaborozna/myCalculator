@@ -1,0 +1,27 @@
+<html>
+<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a routerLink="calculator" class="nav-link" routerLinkActive="active">Главная</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="results" class="nav-link" routerLinkActive="active">Таблица результатов</a>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <br>
+  <h4 style="text-align: center;">{{title}}</h4>
+  <hr>
+  <div class="card">
+    <div class="card-body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div style="text-align: center">
+    <span>All Rights Reserved 2019 @Elizaveta Borozna</span>
+  </div>
+</footer>
+</html>

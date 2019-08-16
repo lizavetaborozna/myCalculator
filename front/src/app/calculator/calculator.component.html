@@ -1,0 +1,226 @@
+<form [formGroup]="formForPay">
+  <div class="form-group">
+    <div class="container">
+      <div class="card">
+        <div class="card-body row">
+          <div class="col-8">
+            Период, за который производится расчет:
+          </div>
+          <div class="col-4">
+            <mat-radio-group aria-label="Select an option" formControlName="periodStr1" [(ngModel)]="result.periodStr1">
+              <mat-radio-button name="period1" ngDefaultControl [value]="3">
+                квартал
+              </mat-radio-button>
+              <mat-radio-button name="period2" ngDefaultControl [value]="6">
+                полугодие
+              </mat-radio-button>
+              <mat-radio-button name="period3" ngDefaultControl [value]="9">
+                девять месяцев
+              </mat-radio-button>
+              <mat-radio-button name="period4" ngDefaultControl [value]="12">
+                год
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body row">
+          <div class="col-8">
+            Сумма выручки от реализации товаров (работ, услуг),
+            имущественных прав за выбранный период (без налога на добавленную стоимость), руб.
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите сумму выручки" formControlName="amountFromSaleStr2"
+                     [(ngModel)]="result.amountFromSaleStr2" type="number">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body row">
+          <div class="col-8">
+            Сумма внереализационных доходов за выбранный период (без налога на добавленную стоимость),руб.
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите сумму  доходов" formControlName="amountNoOperInStr3"
+                     [(ngModel)]="result.amountNoOperInStr3" type="number">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body row">
+          <div class="col-8">
+            Наличие места основной работы:
+          </div>
+          <div class="col-4">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="result.placeToWorkStr4"
+                             formControlName="placeToWorkStr4">
+              <mat-radio-button name="availabWork" ngDefaultControl [value]="true"
+                                (change)="hidden($event)">да
+              </mat-radio-button>
+              <mat-radio-button name="availabWork" ngDefaultControl [value]="false"
+                                (change)="hidden($event)">нет
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="!showMainContent">
+        <div class="card-body row">
+          <div class="col-8">
+            Наличие права на льготы (инвалид I или II группы, инвалид с детства,
+            участник боевых действий на территории других государств и др.):
+          </div>
+          <div class="col-4">
+            <mat-radio-group [(ngModel)]="result.existBenefitsStr5" formControlName="existBenefitsStr5">
+              <mat-radio-button name="benefits" [value]="true" ngDefaultControl>да
+              </mat-radio-button>
+              <mat-radio-button name="benefits1" [value]="false" ngDefaultControl>нет
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="!showMainContent">
+        <div class="card-body row">
+          <div class="col-8">
+            Являетесь ли Вы вдовой (вдовцом), одиноким родителем, приемным родителем, опекуном или попечителем:
+          </div>
+          <div class="col-4">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="result.widowSingleFosterGuardianStr6"
+                             formControlName="widowSingleFosterGuardianStr6">
+              <mat-radio-button name="radioWidow" ngDefaultControl [value]="true">да
+              </mat-radio-button>
+              <mat-radio-button name="radioWidow1" ngDefaultControl [value]="false">нет
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="!showMainContent">
+        <div class="card-body row">
+          <div class="col-8">
+            Количество детей до 18 лет,
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите количество детей" formControlName="numberChildUnderEighteenStr7"
+                     [(ngModel)]="result.numberChildUnderEighteenStr7">
+            </mat-form-field>
+          </div>
+          <div class="col-8">
+            из них количество детей-инвалидов
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите количество детей" formControlName="numberDisableChildStr8"
+                     [(ngModel)]="result.numberDisableChildStr8">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="!showMainContent">
+        <div class="card-body row">
+          <div class="col-8">
+            Количество иждивенцев
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите количество детей "
+                     formControlName="numberDependentsStr9" [(ngModel)]="result.numberDependentsStr9">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="!showMainContent">
+        <div class="card-body row">
+          <div class="col-8">
+            Сумма расходов за выбранный период по страховым взносам по договорам добровольного
+            страхования жизни и дополнительной пенсии, заключенным на срок не менее трех лет, а также
+            по договорам добровольного страхования медицинских расходов, руб.
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите сумму расходов " required
+                     formControlName="amountInsurancePemiumStr10" [(ngModel)]="result.amountInsurancePemiumStr10">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="!showMainContent">
+        <div class="card-body row">
+          <div class="col-8">
+            Сумма расходов за выбранный период на получение
+            первого платного образования своего либо близких родственников, руб.
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите сумму расходов " required
+                     formControlName="amountGetFirstPaidEducationStr11"
+                     [(ngModel)]="result.amountGetFirstPaidEducationStr11">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card" *ngIf="!showMainContent">
+        <div class="card-body row">
+          <div class="col-8">
+            Сумма расходов за выбранный период на строительство либо
+            приобретение жилья для нуждающихся в улучшении жилищных условий, руб.
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите сумму расходов" formControlName="amountForConstructHouseStr12"
+                     [(ngModel)]="result.amountForConstructHouseStr12">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body row">
+          <div class="col-8">
+            Сумма расходов за выбранный период, связанных с осуществлением предпринимательской
+            деятельности, руб.
+          </div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите сумму расходов "
+                     formControlName="amountEntreprenActivitiesStr13"
+                     [(ngModel)]="result.amountEntreprenActivitiesStr13" type="number" (input)="check()">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body row">
+          <div class="col-8">
+            <br>
+            Сумма подоходного налога к уплате, руб.
+          </div>
+          <div class="col-4">
+            <mat-form-field>
+              <input matInput [hidden]="!submitted">
+              {{tax}}
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-danger" [hidden]="checked">
+        Значение суммы расходов за выбранный период, связанных с осуществлением
+        предпринимательской деятельности, руб. должно быть не больше суммы пунктов 2 и 3
+      </div>
+      <div style="display: flex; justify-content: space-around; padding-top: 32px">
+        <button class="col-4" mat-raised-button color="primary" (click)="clearForm()">Очистить</button>
+        <button class="col-4" mat-raised-button color="primary" [disabled]="isFormValid()" (click)="save()">
+          Отправить
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+

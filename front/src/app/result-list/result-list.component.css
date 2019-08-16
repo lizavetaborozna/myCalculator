@@ -1,0 +1,22 @@
+.result-table__cell {
+  width: 16%;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 20px;
+  color: black;
+
+}
+
+.result-table__title {
+  width: 16%;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 16px;
+  color: black;
+}
+
+
+.result-table__cells:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
