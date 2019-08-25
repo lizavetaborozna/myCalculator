@@ -10,14 +10,23 @@ export class ResultService {
   private calculatorPath = 'http://localhost:8080/api/v1/calculator';
   private taxPath = 'http://localhost:8080/api/v1/tax';
   private filterPath = 'http://localhost:8080/api/v1/filter';
-  private filterPath1 = 'http://localhost:8080/api/v1/filter1';
-  private filterPath2 = 'http://localhost:8080/api/v1/filter2';
+  // private filterPath1 = 'http://localhost:8080/api/v1/filter1';
+  // private filterPath2 = 'http://localhost:8080/api/v1/filter2';
+  private myfilter = 'http://localhost:8080/api/v1/myfilter';
 
   constructor(private http: HttpClient) {
   }
 
   createResult(result: Object): Observable<Object> {
     return this.http.post(`${this.calculatorPath}`, result);
+  }
+
+  sendToFilter(value:string) {
+    return this.http.post(`${this.myfilter}`, value);
+  }
+
+  getFilterResult(): Observable<any> {
+    return this.http.get(`${this.filterPath}`);
   }
 
   getResultsList(): Observable<any> {
@@ -28,15 +37,15 @@ export class ResultService {
     return this.http.get(`${this.taxPath}`, {headers: {'Content-Type': 'text'}});
   }
 
-  getFilterResult(): Observable<any> {
-    return this.http.get(`${this.filterPath}`);
-  }
+  // getFilterResult(): Observable<any> {
+  //   return this.http.get(`${this.filterPath}`);
+  // }
 
-  getFilterResult1(): Observable<any> {
-    return this.http.get(`${this.filterPath1}`);
-  }
-
-  getFilterResult2(): Observable<any> {
-    return this.http.get(`${this.filterPath2}`);
-  }
+  // getFilterResult1(): Observable<any> {
+  //   return this.http.get(`${this.filterPath1}`);
+  // }
+  //
+  // getFilterResult2(): Observable<any> {
+  //   return this.http.get(`${this.filterPath2}`);
+  // }
 }

@@ -46,8 +46,7 @@ public interface ResultRepository extends JpaRepository<Result, Long> {
                 throw new NumberFormatException();
             }
             result = (amountOfRevenueFromSaleStr2 + amountNonOperatingIncomeSelectedPeriodStr3 - amountExpensesEntrepreneurialActivitiesStr13) * 0.16;
-            double roundOff = Math.round(result * 100.0) / 100.0;
-            Result result1 = new Result(roundOff, periodStr1, amountOfRevenueFromSaleStr2, amountNonOperatingIncomeSelectedPeriodStr3, availabilityOfPlaceToWorkStr4, amountExpensesEntrepreneurialActivitiesStr13);
+            Result result1 = new Result(Math.round(result * 100.0) / 100.0, periodStr1, amountOfRevenueFromSaleStr2, amountNonOperatingIncomeSelectedPeriodStr3, availabilityOfPlaceToWorkStr4, amountExpensesEntrepreneurialActivitiesStr13);
             return result1;
         }
         if (!availabilityOfPlaceToWorkStr4) {
@@ -112,8 +111,7 @@ public interface ResultRepository extends JpaRepository<Result, Long> {
             }
             result = stepSix * 0.16;
         }
-        double roundOff = Math.round(result * 100.0) / 100.0;
-        Result result1 = new Result(roundOff, periodStr1, amountOfRevenueFromSaleStr2,
+        Result result1 = new Result(Math.round(result * 100.0) / 100.0, periodStr1, amountOfRevenueFromSaleStr2,
                 amountNonOperatingIncomeSelectedPeriodStr3, availabilityOfPlaceToWorkStr4,
                 amountExpensesEntrepreneurialActivitiesStr13);
         return result1;

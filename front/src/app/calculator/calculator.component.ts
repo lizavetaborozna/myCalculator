@@ -81,7 +81,7 @@ export class CalculatorComponent implements OnInit {
       this.formForPay.controls.amountNoOperInStr3.valid &&
       this.formForPay.controls.placeToWorkStr4.valid &&
       this.formForPay.controls.amountEntreprenActivitiesStr13.valid
-    )) {
+    ) && this.checked == true) {
       return false;
     } else {
       return true;

@@ -54,19 +54,25 @@ export class ResultListComponent implements OnInit {
   }
 
   filter() {
-    if (this.formForPay.controls.taxCheck.value == "1") {
+    // if (this.formForPay.controls.taxCheck.value == "1") {
+    //   this.resultService.getFilterResult().subscribe((result) => {
+    //     this.results = result;
+    //   });
+    // } else if (this.formForPay.controls.taxCheck.value == "2") {
+    //   this.resultService.getFilterResult1().subscribe((result) => {
+    //     this.results = result;
+    //   });
+    // } else if (this.formForPay.controls.taxCheck.value == "3") {
+    //   this.resultService.getFilterResult2().subscribe((result) => {
+    //     this.results = result;
+    //   });
+    // }
+    this.resultService.sendToFilter((this.formForPay.controls.taxCheck.value)).subscribe((data => {
+      console.log(data);
       this.resultService.getFilterResult().subscribe((result) => {
         this.results = result;
       });
-    } else if (this.formForPay.controls.taxCheck.value == "2") {
-      this.resultService.getFilterResult1().subscribe((result) => {
-        this.results = result;
-      });
-    } else if (this.formForPay.controls.taxCheck.value == "3") {
-      this.resultService.getFilterResult2().subscribe((result) => {
-        this.results = result;
-      });
-    }
+    }))
   }
 
 }
